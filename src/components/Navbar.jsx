@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 const Navbar = () => {
@@ -12,34 +13,34 @@ const Navbar = () => {
                         <ul
                             tabIndex="-1"
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li><a>Home</a></li>
-                            <li><a>Ideas</a></li>
-                            <li><a>Add Idea</a></li>
-                            <li><a>My Ideas</a></li>
-                            <li><a>My Interactions</a></li>
+                            <li><Link href={'/'}>Home</Link></li>
+                            <li><Link href={'/ideas'}>Ideas</Link></li>
+                            <li><Link href={'/add-idea'}>Add Idea</Link></li>
+                            <li><Link href={'/my-ideas'}>My Ideas</Link></li>
+                            <li><Link href={'/my-interactions'}>My Interactions</Link></li>
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl">Idea Vault</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li><a>Home</a></li>
-                        <li><a>Ideas</a></li>
+                        <li><Link href={'/'}>Home</Link></li>
+                        <li><Link href={'/ideas'}>Ideas</Link></li>
                         <li>
                             <details>
                                 <summary>Menu</summary>
                                 <ul className="p-2 bg-base-100 w-40 z-1">
-                                    <li><a>Add Idea</a></li>
-                                    <li><a>My Ideas</a></li>
-                                    <li><a>My Interactions</a></li>
+                                    <li><Link href={'/add-idea'}>Add Idea</Link></li>
+                                    <li><Link href={'/my-ideas'}>My Ideas</Link></li>
+                                    <li><Link href={'/my-interactions'}>My Interactions</Link></li>
                                 </ul>
                             </details>
                         </li>
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className='btn btn-ghost'>Login</a>
-                    <a className="btn btn-ghost">Sign up</a>
+                    <Link href={'/login'}><button className='btn btn-ghost'>Login</button></Link>
+                    <Link href={'/signUp'}><button className='btn btn-ghost'>Sign Up</button></Link>
                 </div>
             </div>
         </div>
