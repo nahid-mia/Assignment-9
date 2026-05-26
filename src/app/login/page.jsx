@@ -1,5 +1,7 @@
 'use client'
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGoogle } from 'react-icons/fa';
@@ -9,7 +11,24 @@ const LoginPage = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(data);
+        const { data: res, error } = await authClient.signIn.email({
+            email: data.email,
+            password: data.password,
+            rememberMe: true,
+        });
+        window.location.reload();
+        redirect('/');
+    }
+
+    const GoogleLogin = async () => {
+        const signIn = async () => {
+            const data = await authClient.signIn.social({
+                provider: "google",
+            });
+        };
+        signIn();
+        window.location.reload();
+        redirect('/');
     }
 
     return (
@@ -28,7 +47,7 @@ const LoginPage = () => {
             </fieldset>
             <div className="flex flex-col w-xs px-4">
                 <div className="divider">OR</div>
-                <button className="btn btn-neutral">Login via <FaGoogle />- GOOGLE</button>
+                <button onClick={() => GoogleLogin()} className="btn btn-neutral">Login via <FaGoogle />- GOOGLE</button>
             </div>
             <div className="flex flex-col w-xs px-4">
                 <div className="divider">OR</div>

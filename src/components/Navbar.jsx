@@ -1,7 +1,17 @@
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import React from 'react';
+import HandleLogout from './HandleLogout';
 
-const Navbar = () => {
+const Navbar = async () => {
+
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
+
+    const user = session?.user;
+
     return (
         <div className='bg-base-100 shadow-sm'>
             <div className="navbar w-11/12 sm:w-10/12 mx-auto">
@@ -38,10 +48,25 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <Link href={'/login'}><button className='btn btn-ghost'>Login</button></Link>
-                    <Link href={'/signUp'}><button className='btn btn-ghost'>Sign Up</button></Link>
-                </div>
+                {
+                    user ? (<div className="navbar-end menu menu-horizontal px-1 gap-3">
+                        <li>
+                            <details>
+                                <summary>Profile</summary>
+                                <ul className="p-2 bg-base-100 w-40 z-1">
+                                    <li><Link href={'/profile'}>View Profile</Link></li>
+                                    <li><Link href={'/editProfile'}>Manage Profile</Link></li>
+                                </ul>
+                            </details>
+                        </li>
+                        <HandleLogout></HandleLogout>
+                    </div>) :
+                        (<div className="navbar-end">
+                            <Link href={'/login'}><button className='btn btn-ghost'>Login</button></Link>
+                            <Link href={'/signUp'}><button className='btn btn-ghost'>Sign Up</button></Link>
+                        </div>)
+                }
+
             </div>
         </div>
     );
