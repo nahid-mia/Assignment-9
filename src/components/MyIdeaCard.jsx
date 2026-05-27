@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-const IdeaCard = ({ idea }) => {
+const MyIdeaCard = ({ idea }) => {
     console.log(idea)
     const { _id, category, ideaTitle, targetAudience, imageURL, shortDescription } = idea;
     return (
@@ -17,7 +17,7 @@ const IdeaCard = ({ idea }) => {
                     <p>{shortDescription}</p>
                     <p>{targetAudience}</p>
                     <div className="card-actions ">
-                        <button className="btn btn-primary"><Link href={`/ideas/${_id}`}>See Details</Link></button>
+                        <button className="btn btn-primary"><Link href={`/my-ideas/${_id}`}>See Details</Link></button>
                     </div>
                 </div>
             </div>
@@ -35,4 +35,4 @@ const IdeaCard = ({ idea }) => {
     );
 };
 
-export default IdeaCard;
+export default MyIdeaCard;

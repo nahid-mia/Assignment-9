@@ -90,7 +90,7 @@ const AddIdea = () => {
 
                 <label className="label">Proposed Solution</label>
                 <textarea {...register("proposedSolution", { required: true })} className="textarea" placeholder="How does your idea solve the problem?" />
-                <button onClick={handleSubmit(onSubmit)} className="btn btn-neutral mt-4">Add Idea</button>
+                <button onClick={handleSubmit(onSubmit)} disabled={isPending} className="btn btn-neutral mt-4">Add Idea</button>
             </fieldset>
         </div>
     );

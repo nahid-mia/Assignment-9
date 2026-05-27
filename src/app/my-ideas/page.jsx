@@ -1,4 +1,4 @@
-import IdeaCard from '@/components/IdeaCard';
+import MyIdeaCard from '@/components/MyIdeaCard';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import React from 'react';
@@ -33,7 +33,7 @@ const MyIdeas = async () => {
                             <div className='grid gap-8 w-11/12 mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                                 {
                                     ideas.map(idea => {
-                                        return <IdeaCard key={idea?._id} idea={idea}></IdeaCard>
+                                        return <MyIdeaCard key={idea?._id} idea={idea}></MyIdeaCard>
                                     })
                                 }
                             </div>

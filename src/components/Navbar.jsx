@@ -50,13 +50,13 @@ const Navbar = async () => {
                 </div>
                 {
                     user ? (<div className="navbar-end menu menu-horizontal px-1 gap-3">
-                        <li><p>Hi, {user?.name}</p></li>
+                        <li className='hidden md:block'><p>Hi, {user?.name}</p></li>
                         <li>
                             <details>
                                 <summary>Profile</summary>
                                 <ul className="p-2 bg-base-100 w-40 z-20">
                                     <li><Link href={'/profile'}>View Profile</Link></li>
-                                    <li><Link href={'/editProfile'}>Manage Profile</Link></li>
+                                    <li><Link href={'/profile-manage'}>Manage Profile</Link></li>
                                 </ul>
                             </details>
                         </li>
