@@ -22,7 +22,7 @@ const Navbar = async () => {
                         </div>
                         <ul
                             tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 w-52 p-2 shadow">
                             <li><Link href={'/'}>Home</Link></li>
                             <li><Link href={'/ideas'}>Ideas</Link></li>
                             <li><Link href={'/add-idea'}>Add Idea</Link></li>
@@ -39,7 +39,7 @@ const Navbar = async () => {
                         <li>
                             <details>
                                 <summary>Menu</summary>
-                                <ul className="p-2 bg-base-100 w-40 z-1">
+                                <ul className="p-2 bg-base-100 w-40 z-20">
                                     <li><Link href={'/add-idea'}>Add Idea</Link></li>
                                     <li><Link href={'/my-ideas'}>My Ideas</Link></li>
                                     <li><Link href={'/my-interactions'}>My Interactions</Link></li>
@@ -50,10 +50,11 @@ const Navbar = async () => {
                 </div>
                 {
                     user ? (<div className="navbar-end menu menu-horizontal px-1 gap-3">
+                        <li><p>Hi, {user?.name}</p></li>
                         <li>
                             <details>
                                 <summary>Profile</summary>
-                                <ul className="p-2 bg-base-100 w-40 z-1">
+                                <ul className="p-2 bg-base-100 w-40 z-20">
                                     <li><Link href={'/profile'}>View Profile</Link></li>
                                     <li><Link href={'/editProfile'}>Manage Profile</Link></li>
                                 </ul>

@@ -1,10 +1,12 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const SignUpPage = () => {
+
+    const router = useRouter();
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
@@ -15,7 +17,7 @@ const SignUpPage = () => {
             password: data.password,
             image: data.image,
         });
-        redirect('/');
+        router.push('/');
     }
 
     return (
@@ -33,7 +35,16 @@ const SignUpPage = () => {
                 <input type="url" {...register("image")} className="input" placeholder="image url" />
 
                 <label className="label">Password</label>
-                <input type="password" {...register("password", { required: true })} className="input" placeholder="Password" />
+                <input type="password" {...register("password", {
+                    required: true, minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters"
+                    },
+                    validate: {
+                        hasUppercase: (v) => /[A-Z]/.test(v) || "Must include an uppercase letter",
+                        hasLowercase: (v) => /[a-z]/.test(v) || "Must include a lowercase letter",
+                    }
+                })} className="input" placeholder="Password" />
 
                 <button className="btn btn-neutral mt-4" onClick={handleSubmit(onSubmit)}>Register</button>
             </fieldset>

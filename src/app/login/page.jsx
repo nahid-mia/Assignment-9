@@ -1,7 +1,7 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGoogle } from 'react-icons/fa';
@@ -9,26 +9,36 @@ import { FaGoogle } from 'react-icons/fa';
 const LoginPage = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const router = useRouter();
 
     const onSubmit = async (data) => {
+        const user = data;
         const { data: res, error } = await authClient.signIn.email({
-            email: data.email,
-            password: data.password,
-            rememberMe: true,
+            email: user.email,
+            password: user.password,
         });
-        window.location.reload();
-        redirect('/');
+
+
+        if (data) {
+            router.push('/');
+            router.refresh();
+        }
+
+        if (error) {
+            alert("Error");
+        }
     }
 
     const GoogleLogin = async () => {
-        const signIn = async () => {
-            const data = await authClient.signIn.social({
-                provider: "google",
-            });
-        };
-        signIn();
-        window.location.reload();
-        redirect('/');
+        const { error } = await authClient.signIn.social({
+            provider: "google",
+            callbackURL: '/',
+        });
+
+        if (error) {
+            alert(error.message)
+        }
+
     }
 
     return (

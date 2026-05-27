@@ -1,9 +1,11 @@
 'use client'
 import { authClient } from '@/lib/auth-client';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import React from 'react';
 
 const HandleLogout = () => {
+
+    const router = useRouter();
     const handleLogout = async () => {
         await authClient.signOut({
             fetchOptions: {
@@ -12,7 +14,7 @@ const HandleLogout = () => {
                 },
             },
         });
-        window.location.reload();
+        router.refresh();
         redirect('/login');
     }
     return (
