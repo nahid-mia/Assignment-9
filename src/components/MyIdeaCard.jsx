@@ -16,8 +16,10 @@ const MyIdeaCard = ({ idea }) => {
                     <p>Category: {category}</p>
                     <p>{shortDescription}</p>
                     <p>{targetAudience}</p>
-                    <div className="card-actions ">
+                    <div className="card-actions flex flex-col md:flex-row">
+                        <button className='btn btn-primary'>Update</button>
                         <button className="btn btn-primary"><Link href={`/my-ideas/${_id}`}>See Details</Link></button>
+                        <button className='btn btn-primary'>Delete</button>
                     </div>
                 </div>
             </div>

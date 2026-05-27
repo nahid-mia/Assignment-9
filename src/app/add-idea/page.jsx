@@ -10,10 +10,8 @@ const AddIdea = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const router = useRouter();
     const user = session?.user;
-    console.log(user?.id)
 
     const onSubmit = async (data) => {
-        console.log('Btn Clicked')
         try {
             const res = await fetch('http://localhost:7000/ideas', {
                 method: 'POST',
