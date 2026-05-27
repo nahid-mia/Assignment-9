@@ -15,10 +15,14 @@ const ProfileManage = () => {
     console.log(user)
 
     const onSubmit = async (data) => {
+        const updatedData = Object.fromEntries(
+            Object.entries(data).filter(([_, value]) => value !== '' && value !== null && value !== undefined)
+        );
+
         const res = await fetch(`http://localhost:7000/user/${user?.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
+            body: JSON.stringify(updatedData),
         });
         const result = await res.json();
         router.push('/');
