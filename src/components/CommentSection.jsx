@@ -3,6 +3,8 @@ import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import EditModal from './EditModal';
+import DeleteModal from './DeleteModal';
 
 const CommentSection = ({ id }) => {
 
@@ -34,6 +36,9 @@ const CommentSection = ({ id }) => {
             window.location.reload();
         }
     }
+
+
+
     useEffect(() => {
         const fetchComments = async () => {
             try {
@@ -63,17 +68,13 @@ const CommentSection = ({ id }) => {
                             <div className='flex gap-3 flex-col'>
                                 <div className='flex gap-2'>
                                     <h4>{comment.authorName}</h4>
-                                    <a>{comment.createdAt}</a>
+                                    <a>{comment.editedAt || comment.createdAt}</a>
                                 </div>
                                 <p>{comment.text}</p>
                             </div>
                             <div className='flex gap-2'>
-                                <button className='btn btn-ghost'>
-                                    Edit
-                                </button>
-                                <button className='btn btn-ghost'>
-                                    Delete
-                                </button>
+                                <EditModal text={comment.text} commentId={comment?._id}></EditModal>
+                                <DeleteModal commentId={comment?._id}></DeleteModal>
                             </div>
                         </li>)
                         :
