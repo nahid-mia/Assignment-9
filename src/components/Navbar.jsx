@@ -54,7 +54,7 @@ const Navbar = async () => {
                         <li>
                             <details>
                                 <summary>Profile</summary>
-                                <ul className="p-2 bg-base-100 w-40 z-20">
+                                <ul className="p-2 bg-base-100 w-20 sm:w-40 z-20">
                                     <li><Link href={'/profile'}>View Profile</Link></li>
                                     <li><Link href={'/profile-manage'}>Manage Profile</Link></li>
                                 </ul>
