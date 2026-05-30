@@ -2,6 +2,7 @@
 import { authClient } from '@/lib/auth-client';
 import { redirect, useRouter } from 'next/navigation';
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const HandleLogout = () => {
 
@@ -10,7 +11,7 @@ const HandleLogout = () => {
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
-                    alert('User Logged out successfully');
+                    toast.success('User Logged out successfully');
                 },
             },
         });

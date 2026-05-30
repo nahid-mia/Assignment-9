@@ -3,6 +3,7 @@ import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const AddIdea = () => {
 
@@ -39,6 +40,7 @@ const AddIdea = () => {
             const result = await res.json();
             console.log(result);
             router.push('/');
+            toast.success('Idea Added successfully');
 
         } catch (error) {
             console.error(error);

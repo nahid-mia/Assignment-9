@@ -3,6 +3,7 @@ import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const SignUpPage = () => {
 
@@ -10,14 +11,19 @@ const SignUpPage = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
-        console.log(data);
         const { data: res, error } = await authClient.signUp.email({
             name: data.name,
             email: data.email,
             password: data.password,
             image: data.image,
         });
-        router.push('/');
+        if (res) {
+            router.push('/');
+            toast.success('User Signed up');
+        }
+        else {
+            toast.error(error);
+        }
     }
 
     return (

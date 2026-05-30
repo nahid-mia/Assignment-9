@@ -1,6 +1,7 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
-const DeleteModal = ({commentId}) => {
+const DeleteModal = ({ commentId }) => {
 
     const handleDelete = async () => {
         const res = await fetch(`http://localhost:7000/comments/${commentId}`, {
@@ -10,6 +11,7 @@ const DeleteModal = ({commentId}) => {
         if (res.ok) {
             document.getElementById('my_modal_4').close();
             window.location.reload();
+            toast.error('comment Deleted')
         };
     }
 

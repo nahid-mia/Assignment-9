@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { FaGoogle } from 'react-icons/fa';
 
 const LoginPage = () => {
@@ -22,10 +23,11 @@ const LoginPage = () => {
         if (data) {
             router.push('/');
             router.refresh();
+            toast.success('User logged in')
         }
 
         if (error) {
-            alert("Error");
+            toast.error(error);
         }
     }
 

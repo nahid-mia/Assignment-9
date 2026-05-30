@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const EditModal = ({ text, commentId }) => {
 
@@ -19,6 +20,7 @@ const EditModal = ({ text, commentId }) => {
         if (res.ok) {
             document.getElementById('my_modal_3').close();
             window.location.reload();
+            toast.success('Comment Edited');
         }
     }
 
