@@ -28,6 +28,15 @@ const Navbar = async () => {
                             <li><Link href={'/add-idea'}>Add Idea</Link></li>
                             <li><Link href={'/my-ideas'}>My Ideas</Link></li>
                             <li><Link href={'/my-interactions'}>My Interactions</Link></li>
+                            <li>
+                                <details>
+                                    <summary>Profile</summary>
+                                    <ul className="p-2 bg-base-100 w-20 sm:w-40 z-20">
+                                        <li><Link href={'/profile'}>View Profile</Link></li>
+                                        <li><Link href={'/profile-manage'}>Manage Profile</Link></li>
+                                    </ul>
+                                </details>
+                            </li>
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl">Idea Vault</a>
@@ -51,7 +60,7 @@ const Navbar = async () => {
                 {
                     user ? (<div className="navbar-end menu menu-horizontal px-1 gap-3">
                         <li className='hidden md:block'><p>Hi, {user?.name}</p></li>
-                        <li>
+                        <li className='hidden md:block'>
                             <details>
                                 <summary>Profile</summary>
                                 <ul className="p-2 bg-base-100 w-20 sm:w-40 z-20">
